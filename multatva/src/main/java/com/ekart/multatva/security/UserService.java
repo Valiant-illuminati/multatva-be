@@ -7,6 +7,7 @@ import com.ekart.multatva.entity.UserEntity;
 import com.ekart.multatva.repository.RoleRepository;
 import com.ekart.multatva.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +27,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final JwtService jwtService;
-    private final PasswordEncoder passwordEncoder;
+    private final @Lazy PasswordEncoder passwordEncoder;
 
     public void register(RegisterRequest request) {
         Set<RoleEntity> roles = request.getRoleNames().stream()
